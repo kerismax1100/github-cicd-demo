@@ -1,0 +1,33 @@
+# Release: push a tag like v1.0.0 to build, verify and publish a GitHub Release.
+name: Release
+
+on:
+  push:
+    tags: ['v*.*.*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - name: Zip the build
+        run: cd dist && zip -r "../todo-app-$TAG.zip" .
+      - name: Publish release
+        run: >
+          gh release create "$TAG" "todo-app-$TAG.zip"
+          --title "$TAG" --generate-notes
