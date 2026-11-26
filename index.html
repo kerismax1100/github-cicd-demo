@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Việc cần làm</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <h1>Việc cần làm</h1>
+        <p class="subtitle">Demo CI/CD với GitHub Actions</p>
+      </header>
+
+      <form id="todo-form" class="todo-form" novalidate>
+        <label for="todo-input" class="visually-hidden">Công việc mới</label>
+        <input
+          id="todo-input"
+          name="title"
+          type="text"
+          placeholder="Nhập công việc rồi nhấn Thêm"
+          autocomplete="off"
+          maxlength="100"
+        />
+        <button type="submit">Thêm</button>
+      </form>
+      <p id="form-error" class="form-error" role="alert"></p>
+
+      <nav class="filters" aria-label="Lọc công việc">
+        <button type="button" data-filter="all" aria-pressed="true">Tất cả</button>
+        <button type="button" data-filter="active" aria-pressed="false">Đang làm</button>
+        <button type="button" data-filter="done" aria-pressed="false">Đã xong</button>
+      </nav>
+
+      <ul id="todo-list" class="todo-list" aria-label="Danh sách công việc"></ul>
+
+      <footer class="app-footer">
+        <span id="todo-count" aria-live="polite">0 việc chưa xong</span>
+        <button type="button" id="clear-done" class="link-button">Xoá việc đã xong</button>
+      </footer>
+    </main>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
