@@ -14,7 +14,6 @@ const sample = [
   { id: 2, title: 'Viết unit test', done: true },
 ];
 
-
 describe('validateTitle', () => {
   it('báo lỗi khi tên trống', () => {
     expect(validateTitle('   ')).toBe('Vui lòng nhập tên công việc.');
@@ -34,7 +33,7 @@ describe('addTodo', () => {
     const result = addTodo([], '  Đọc log CI  ', 42);
     expect(result).toEqual([{ id: 42, title: 'Đọc log CI', done: false }]);
   });
-  
+
   it('không thêm khi tên không hợp lệ', () => {
     expect(addTodo(sample, '')).toBe(sample);
   });
